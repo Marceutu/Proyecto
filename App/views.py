@@ -3,10 +3,41 @@ from django.shortcuts import get_object_or_404, redirect, render
 from .forms import AnimalForm
 from .models import Animal
 from django.http import Http404
-from django.shortcuts import render, redirect
 from django.http import JsonResponse
 from django.contrib import messages
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
+from .forms import RegistroForm
+from django.urls import reverse  
 
+
+def registro(request):
+    if request.method == 'POST':
+        form = RegistroForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('login')
+    else:
+        form = RegistroForm()
+    return render(request, 'registro.html', {'form': form})
+
+def inicio_sesion(request):
+    if request.method == 'POST':
+        username = request.POST['username']
+        password = request.POST['password']
+        user = authenticate(request, username=username, password=password)
+        if user is not None:
+            login(request, user)
+            return redirect('home')  
+    return render(request, 'login.html')
+
+def cerrar_sesion(request):
+    logout(request)
+    return redirect('login')
+
+@login_required
+def home(request):
+    return render(request, 'home.html')
 
 def registrar_animal(request):
     animal_form = AnimalForm()
@@ -35,18 +66,11 @@ def informacion(request):
 
 
 
-from django.urls import reverse  # Importar reverse
-
-from django.shortcuts import render, redirect
-from .models import Animal  # Importar el modelo
-from django.urls import reverse
-
 def buscar_animal(request):
     if request.method == 'GET' and 'busqueda' in request.GET:
         busqueda = request.GET.get('busqueda', '').strip()  
-        print(f"Código recibido: '{busqueda}'")  # Depuración
 
-        if not busqueda:  # Evitar que lance error antes de escribir algo
+        if not busqueda:  
             return render(request, 'core/buscar.html', {'mensaje': 'Ingrese un ID o código antes de buscar'})
 
         try:
@@ -60,7 +84,7 @@ def buscar_animal(request):
         except Animal.DoesNotExist:
             return render(request, 'core/buscar.html', {'mensaje': 'Animal no encontrado'})
 
-    return render(request, 'core/buscar.html')  # Carga la página sin errores al inicio
+    return render(request, 'core/buscar.html')  
 
                                                
 def resultados_busqueda(request, id):
@@ -80,7 +104,7 @@ def editar_animal(request, animal_id):
         form = AnimalForm(request.POST, instance=animal)
         if form.is_valid():
             form.save()
-            return redirect('resultados_busqueda', id=animal.id)  # Redirige tras editar
+            return redirect('resultados_busqueda', id=animal.id)  
     else:
         form = AnimalForm(instance=animal)
 

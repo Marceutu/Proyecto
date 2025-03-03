@@ -1,5 +1,7 @@
 import uuid
 from django.db import models
+from django.contrib.auth.models import User
+from django.db import models
 
 class Animal(models.Model):
     TIPO_ANIMAL_CHOICES = [
@@ -7,7 +9,7 @@ class Animal(models.Model):
         ('gato', 'Gato'),
     ]
     
-    codigo_registro = models.CharField(max_length=36, unique=True, blank=False, null=False)  # UUID siempre presente
+    codigo_registro = models.CharField(max_length=36, unique=True, blank=False, null=False) 
     tipo_animal = models.CharField(max_length=50, choices=TIPO_ANIMAL_CHOICES, null=True, blank=True)
     sexo = models.CharField(max_length=10)
     edad = models.IntegerField()

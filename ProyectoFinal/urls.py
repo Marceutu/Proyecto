@@ -16,17 +16,26 @@ Including another URLconf
 """
 
 
-from App import views
+
 from django.contrib import admin
 from django.urls import path
 
+from App import views  
+
 urlpatterns = [
-     path('admin/', admin.site.urls),
-     path('', views.home, name='home'),
-     path('ingresar_animal/', views.registrar_animal, name='ingresar_animal'),
-     path('buscar/', views.buscar_animal, name='buscar'),
-     path('resultados_busqueda/<int:id>/', views.resultados_busqueda, name='resultados_busqueda'),
-     path('editar_animal/<int:animal_id>/', views.editar_animal, name='editar_animal'),
-     path('contacto/', views.contacto, name='contacto'),
-     path('informacion/', views.informacion, name='informacion'),
+    path('', views.inicio_sesion, name='login'),  # Página de inicio de sesión
+    path('registro/', views.registro, name='registro'),
+    path('logout/', views.cerrar_sesion, name='logout'),
+    path('home/', views.home, name='home'),  # Página principal tras login
+    
+    # Funcionalidades protegidas por login
+    path('ingresar_animal/', views.registrar_animal, name='ingresar_animal'),
+    path('buscar/', views.buscar_animal, name='buscar'),
+    path('resultados_busqueda/<int:id>/', views.resultados_busqueda, name='resultados_busqueda'),
+    path('editar_animal/<int:animal_id>/', views.editar_animal, name='editar_animal'),
+    path('contacto/', views.contacto, name='contacto'),
+    path('informacion/', views.informacion, name='informacion'),
+
+    # Admin
+    path('admin/', admin.site.urls),
 ]
