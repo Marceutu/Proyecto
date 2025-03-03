@@ -1,0 +1,30 @@
+{% extends 'home.html' %}
+{% load static %}
+
+{% block contenido %}
+  <h2 style="text-align: center; margin-bottom: 20px;">Resultados de la Búsqueda</h2> <!-- Título centrado -->
+  <div style="display: flex; justify-content: space-between; align-items: center; gap: 20px;">
+    <div style="flex-grow: 1;">
+      {% if animal %}
+        <p><strong>ID:</strong> {{ animal.id }}</p>
+        <p><strong>Sexo:</strong> {{ animal.sexo }}</p>
+        <p><strong>Edad:</strong> {{ animal.edad }}</p>
+        <p><strong>Descripción:</strong> {{ animal.descripcion }}</p>
+        <p><strong>Estado de Salud:</strong> {{ animal.estado_salud }}</p>
+
+        <!-- Botón para editar con estilo verde -->
+        <a href="{% url 'editar_animal' animal.id %}" class="btn btn-success">Editar</a>
+      {% else %}
+        <p>Animal no encontrado.</p>
+      {% endif %}
+    </div>
+
+    <!-- Imagen alineada a la derecha -->
+    <img src="{% static 'core/assets/gato.png' %}" alt="Gato" height="500" width="400" style="display:block; margin-left:auto; margin-right:0;" />
+  </div>
+{% endblock %}
+
+
+
+
+

@@ -1,0 +1,41 @@
+{% extends 'core/home.html' %}
+{% load static %}
+{% block titulo %}
+  <!-- Título de la página -->
+{% endblock titulo %}
+
+{% block contenido %}
+  <!-- Contenido principal de la página -->
+
+  <!-- Fila de encabezado -->
+  <div class="fila gx-4 gx-lg-6 align-items-center my-5">
+    <div class="col-md-4 mb-6">
+      <div class="row">
+        <div class="col-md-12 text-center">
+          <img class="masthead-avatar" src="{% static 'core/assets/gato.png' %}" alt="Gato" height="350" width="280" />
+        </div>
+      </div>
+    </div>
+    <div class="col-md-8 mb-6">
+      <div class="tarjeta h-100">
+        <div class="card-body">
+          <h3 class="título-tarjeta">Bienvenido al Sistema de Registro de Animales</h3>
+          <p class="card-text">
+            Nuestro sistema de registro es una herramienta fundamental para mantener un control detallado y organizado de todos los animales que ingresan a nuestro refugio. Como funcionario, tu labor es fundamental para garantizar que cada animal reciba la atención adecuada y que se gestione su estadía de manera eficiente hasta encontrarles un hogar permanente.
+          </p>
+        </div>
+        <div class="card-footer">
+          <!-- Botón con estilo verde alineado a la izquierda -->
+          <a href="{% url 'informacion' %}" class="btn btn-success btn-sm">Más información</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Pie de página -->
+  <footer style="width: 80%; margin: 0 auto; padding: 20px 0;">
+    <!-- Contenido del pie de página -->
+    <p>&copy; 2025 Sistema de Registro de Animales. Todos los derechos reservados.</p>
+  </footer>
+{% endblock contenido %}
+

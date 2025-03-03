@@ -1,0 +1,17 @@
+{% extends 'home.html' %}
+{% load static %}
+{% block contenido %}
+  <h2 style="text-align: center; margin-bottom: 20px;">Editar Animal</h2> <!-- Título centrado -->
+  <div style="display: flex; justify-content: space-between; align-items: center; gap: 20px;">
+    <!-- Formulario de edición -->
+    <form method="POST" style="flex-grow: 1;">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <button type="submit" class="btn btn-success">Guardar Cambios</button>
+    </form>
+
+    <!-- Imagen alineada a la derecha -->
+    <img src="{% static 'core/assets/gato.png' %}" alt="Gato" height="500" width="400" style="display:block; margin-left:auto; margin-right:0;" />
+  </div>
+{% endblock %}
+
