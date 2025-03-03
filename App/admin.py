@@ -1,4 +1,4 @@
 from django.contrib import admin
-from .models import Animal  # Importar el modelo Animal, no Perro ni Gato
+from .models import Animal  
 
-admin.site.register(Animal)  # Registrar el modelo Animal en el admin
+admin.site.register(Animal)  

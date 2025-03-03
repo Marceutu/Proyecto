@@ -1,0 +1,55 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <title>Iniciar Sesión</title>
+    <link rel="icon" type="image/x-icon" href="{% static 'core/assets/favicon.ico' %}"/>
+    <link href="{% static 'core/css/styles.css' %}" rel="stylesheet" />
+    <style>
+        .bg-dark {
+            background-color: #145A32 !important;
+        }
+        .btn-green {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+        .btn-green:hover {
+            background-color: #218838;
+        }
+    </style>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container px-5">
+        <a class="navbar-brand" href="#">Refugio Patitas Felices</a>
+    </div>
+</nav>
+<div class="container px-4 px-lg-5">
+    <h2 class="text-center mt-5">Registro</h2>
+    <form method="POST" class="w-50 mx-auto mt-3">
+        {% csrf_token %}
+        <div class="mb-3">
+            <label class="form-label">Usuario:</label>
+            <input type="text" name="username" class="form-control" required>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Contraseña:</label>
+            <input type="password" name="password" class="form-control" required>
+        </div>
+        <button type="submit" class="btn btn-green w-100">Ingresar</button>
+    </form>
+    
+</div>
+<footer class="py-5 bg-dark text-white text-center">
+    <p class="m-0">© Animales 2024</p>
+</footer>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="{% static 'core/js/scripts.js' %}"></script>
+</body>
+</html>
