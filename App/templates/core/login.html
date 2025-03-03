@@ -1,15 +1,35 @@
-{% load static %}
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
+    {% load static %}
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <title>Iniciar Sesión - Refugio Patitas Felices</title>
     <link href="{% static 'core/css/styles.css' %}" rel="stylesheet" />
     <style>
+        /* Color del navbar y footer */
         .bg-dark {
             background-color: #145A32 !important;
+        }
+
+        /* Mantener el footer abajo */
+        html, body {
+            height: 100%;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .container {
+            flex: 1;
+        }
+
+        footer {
+            position: relative;
+            bottom: 0;
+            width: 100%;
         }
     </style>
 </head>
